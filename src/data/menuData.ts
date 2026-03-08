@@ -29,4 +29,4 @@ export const menuData: MenuItemType[] =[
   { id: 'd2', name: 'Cheesecake', price: 320, description: 'New York style baked cheesecake.', category: 'Desserts', isVeg: false, image: 'https://unsplash.com/photos/s8_7AqkzCWY/download' },
 ];
 
-export const categories = ['Coffee', 'Brews', 'Mocktails', 'Food', 'Desserts'];
+export const categories =['Coffee', 'Brews', 'Mocktails', 'Food', 'Desserts'];
