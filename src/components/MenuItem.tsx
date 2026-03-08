@@ -1,3 +1,4 @@
+components/MenuItem.tsx ---
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
@@ -18,10 +19,21 @@ export const MenuItem: React.FC<MenuItemProps> = ({ item, index }) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex flex-col py-6 border-b border-[#2B2620] hover:bg-white/[0.02] transition-colors rounded-xl px-4 -mx-4"
+      transition={{ duration: 0.6, delay: index * 0.1, ease:[0.16, 1, 0.3, 1] }}
+      className="group relative flex flex-col sm:flex-row gap-4 sm:gap-6 py-6 border-b border-[#2B2620] hover:bg-white/[0.02] transition-colors rounded-xl px-4 -mx-4"
     >
-      <div className="flex flex-col gap-2">
+      {/* Menu Item Image */}
+      {item.image && (
+        <div className="w-full sm:w-28 h-48 sm:h-28 shrink-0 rounded-xl overflow-hidden border border-[#2B2620]">
+          <img 
+            src={item.image} 
+            alt={item.name} 
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+      )}
+
+      <div className="flex flex-col gap-2 flex-1 justify-center">
         <div className="flex items-end gap-3 w-full">
           <div className="flex items-center gap-3">
             <h3 className="text-xl font-playfair text-[#FDFBF7] group-hover:text-[#D4A373] transition-colors whitespace-nowrap">
