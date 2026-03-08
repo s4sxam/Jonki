@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
@@ -13,6 +14,11 @@ interface MenuItemProps {
 export const MenuItem: React.FC<MenuItemProps> = ({ item, index }) => {
   const { addToCart } = useCart();
 
+  // Automatically resize and compress the image to 400x400 WebP format
+  const optimizedImage = item.image 
+    ? `https://wsrv.nl/?url=${encodeURIComponent(item.image)}&w=400&h=400&fit=cover&q=80&output=webp` 
+    : undefined;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -22,12 +28,14 @@ export const MenuItem: React.FC<MenuItemProps> = ({ item, index }) => {
       className="group relative flex flex-col sm:flex-row gap-4 sm:gap-6 py-6 border-b border-[#2B2620] hover:bg-white/[0.02] transition-colors rounded-xl px-4 -mx-4"
     >
       {/* Menu Item Image */}
-      {item.image && (
-        <div className="w-full sm:w-28 h-48 sm:h-28 shrink-0 rounded-xl overflow-hidden border border-[#2B2620]">
+      {optimizedImage && (
+        <div className="w-full sm:w-28 h-48 sm:h-28 shrink-0 rounded-xl overflow-hidden border border-[#2B2620] bg-[#15110D]">
           <img 
-            src={item.image} 
+            src={optimizedImage} 
             alt={item.name} 
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 will-change-transform"
           />
         </div>
       )}
